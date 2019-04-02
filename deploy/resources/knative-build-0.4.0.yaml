@@ -298,7 +298,7 @@ metadata:
   name: creds-init
   namespace: knative-build
 spec:
-  image: gcr.io/knative-releases/github.com/knative/build/cmd/creds-init@sha256:9243ee302895cc3925b5c6670886b0051d18b97c356723287ba2292bf62641e3
+  image: quay.io/openshift-knative/knative-build-creds-init:v0.4.0
 ---
 apiVersion: caching.internal.knative.dev/v1alpha1
 kind: Image
@@ -306,7 +306,7 @@ metadata:
   name: git-init
   namespace: knative-build
 spec:
-  image: gcr.io/knative-releases/github.com/knative/build/cmd/git-init@sha256:bef1d2d1fbaa80a130fb322dbfe3895ae17ce8e74921762e5b16a24157896105
+  image: quay.io/openshift-knative/knative-build-git-init:v0.4.0
 ---
 apiVersion: caching.internal.knative.dev/v1alpha1
 kind: Image
@@ -322,7 +322,7 @@ metadata:
   name: nop
   namespace: knative-build
 spec:
-  image: gcr.io/knative-releases/github.com/knative/build/cmd/nop@sha256:a0481df4fde8afe761c7a614c63b65069ef7c4c7b7715a29b03170eed8029c02
+  image: quay.io/openshift-knative/knative-build-nop:v0.4.0
 
 ---
 apiVersion: v1
@@ -383,17 +383,17 @@ spec:
         - -stderrthreshold
         - INFO
         - -creds-image
-        - gcr.io/knative-releases/github.com/knative/build/cmd/creds-init@sha256:9243ee302895cc3925b5c6670886b0051d18b97c356723287ba2292bf62641e3
+        - quay.io/openshift-knative/knative-build-creds-init:v0.4.0
         - -git-image
-        - gcr.io/knative-releases/github.com/knative/build/cmd/git-init@sha256:bef1d2d1fbaa80a130fb322dbfe3895ae17ce8e74921762e5b16a24157896105
+        - quay.io/openshift-knative/knative-build-git-init:v0.4.0
         - -nop-image
-        - gcr.io/knative-releases/github.com/knative/build/cmd/nop@sha256:a0481df4fde8afe761c7a614c63b65069ef7c4c7b7715a29b03170eed8029c02
+        - quay.io/openshift-knative/knative-build-nop:v0.4.0
         env:
         - name: SYSTEM_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: gcr.io/knative-releases/github.com/knative/build/cmd/controller@sha256:c48663d589ac034d091dd95e746b6a2733950911e9959a012c5773e5b6a77ee3
+        image: quay.io/openshift-knative/knative-build-controller:v0.4.0
         name: build-controller
         volumeMounts:
         - mountPath: /etc/config-logging
@@ -431,7 +431,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: gcr.io/knative-releases/github.com/knative/build/cmd/webhook@sha256:bcbc9fd994b84d9fe84400e04e52628ccc2b12b001d6c35a263ed363e55d6a6b
+        image: quay.io/openshift-knative/knative-build-webhook:v0.4.0
         name: build-webhook
         volumeMounts:
         - mountPath: /etc/config-logging
