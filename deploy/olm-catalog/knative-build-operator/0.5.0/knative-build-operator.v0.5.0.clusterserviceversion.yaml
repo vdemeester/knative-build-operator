@@ -9,12 +9,6 @@ metadata:
 spec:
   apiservicedefinitions: {}
   customresourcedefinitions:
-    required:
-    - kind: Image
-      name: images.caching.internal.knative.dev
-      version: v1alpha1
-      displayName: Image
-      description: Image
     owned:
     - description: The Knative Build Installation
       displayName: Installation
