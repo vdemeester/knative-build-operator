@@ -313,6 +313,14 @@
   version = "1.0.1"
 
 [[projects]]
+  branch = "master"
+  digest = "1:72d3335df53ac5864d8266e8d5654954cd0cffd65134879df93a6984abc3f4e8"
+  name = "github.com/openshift/cluster-network-operator"
+  packages = ["pkg/util/k8s"]
+  pruneopts = "NT"
+  revision = "0cfb4cd4d9820d47c1f6b617c0b6e91930481bab"
+
+[[projects]]
   digest = "1:674610d54812d3c36ab7861fc826176bf581a9426cc09abec0107414c17f89cd"
   name = "github.com/operator-framework/operator-sdk"
   packages = [
@@ -915,6 +923,7 @@
   input-imports = [
     "github.com/go-openapi/spec",
     "github.com/jcrossley3/manifestival",
+    "github.com/openshift/cluster-network-operator/pkg/util/k8s",
     "github.com/operator-framework/operator-sdk/pkg/k8sutil",
     "github.com/operator-framework/operator-sdk/pkg/leader",
     "github.com/operator-framework/operator-sdk/pkg/log/zap",
