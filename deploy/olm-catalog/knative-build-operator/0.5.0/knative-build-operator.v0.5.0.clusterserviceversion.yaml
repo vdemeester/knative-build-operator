@@ -218,7 +218,10 @@ spec:
                 - name: OPERATOR_NAME
                   value: knative-build-operator
                 image: quay.io/openshift-knative/knative-build-operator:v0.5.0
-                args: ["--olm", "--install"]
+                args:
+                  - --olm
+                  - --install
+                  - --filename=https://raw.githubusercontent.com/openshift/knative-build/release-v0.5.0/openshift/release/knative-build-v0.5.0.yaml
                 imagePullPolicy: Always
                 name: knative-build-operator
                 resources: {}
