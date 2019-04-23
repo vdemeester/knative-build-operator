@@ -30,17 +30,21 @@ policies in the upstream manifest[s].
 And then generate a basic `ClusterServiceVersion` passing in a version
 that corresponds to those manifests:
 
-    operator-sdk olm-catalog gen-csv --csv-version 0.5.1
+    operator-sdk olm-catalog gen-csv --csv-version $VERSION
 
 Some post-editing of the file it generates is required:
 
 * Add fields to address any warnings it reports
 * Add `description` and `displayName` fields for all owned CRD's
-* Add `args: ["--olm", "--install"]` to the operator's container spec.
+* Add `args: ["--olm", "--install"]` to the operator's container spec. (See NOTE below)
 * Add a `replaces` field referencing the previous CSV
 
 With the above in place, the [catalog.sh](hack/catalog.sh) script
 should yield a valid `CatalogSource` for you to publish.
+
+NOTE: If the CSV should install a modified version of its embedded
+manifest, you may add a `--filename` arg to the operator's container
+spec that takes a comma-delimited list of URL's.
 
 ### Using OLM on Minikube
 

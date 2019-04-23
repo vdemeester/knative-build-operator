@@ -211,7 +211,7 @@ spec:
                       fieldPath: metadata.name
                 - name: OPERATOR_NAME
                   value: knative-build-operator
-                image: quay.io/jcrossley3/knative-build-operator:v0.4.0
+                image: quay.io/openshift-knative/knative-build-operator:v0.4.0
                 args: ["--olm", "--install"]
                 imagePullPolicy: Always
                 name: knative-build-operator
