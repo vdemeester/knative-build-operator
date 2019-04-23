@@ -64,10 +64,11 @@ func add(mgr manager.Manager, r reconcile.Reconciler) error {
 		return err
 	}
 
-	// Auto-create Install
+	// Make an attempt to auto-create an Install CR
 	if *autoinstall {
 		ns, _ := k8sutil.GetWatchNamespace()
-		go autoInstall(mgr.GetClient(), ns)
+		c, _ := client.New(mgr.GetConfig(), client.Options{})
+		go autoInstall(c, ns)
 	}
 	return nil
 }
@@ -103,9 +104,17 @@ func (r *ReconcileInstall) Reconcile(request reconcile.Request) (reconcile.Resul
 		// Error reading the object - requeue the request.
 		return reconcile.Result{}, err
 	}
-	if err := r.install(instance); err != nil {
-		return reconcile.Result{}, err
+
+	stages := []func(*buildv1alpha1.Install) error{
+		r.install,
 	}
+
+	for _, stage := range stages {
+		if err := stage(instance); err != nil {
+			return reconcile.Result{}, err
+		}
+	}
+
 	return reconcile.Result{}, nil
 }
 
