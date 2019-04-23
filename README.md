@@ -37,6 +37,7 @@ Some post-editing of the file it generates is required:
 * Add fields to address any warnings it reports
 * Add `description` and `displayName` fields for all owned CRD's
 * Add `args: ["--olm", "--install"]` to the operator's container spec.
+* Add a `replaces` field referencing the previous CSV
 
 With the above in place, the [catalog.sh](hack/catalog.sh) script
 should yield a valid `CatalogSource` for you to publish.
